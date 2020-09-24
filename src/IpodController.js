@@ -1,30 +1,21 @@
 import React from 'react';
 
 class IpodController extends React.Component {
-  //   rotateEvent = () => {
-  //     var touchArea = document.getElementsByClassName('menuController');
-  //     var myRegion = new ZingTouch.Region(touchArea[0]);
-  //     var myTapGesture = new ZingTouch.Rotate();
-  //     myRegion.bind(touchArea[0], 'rotate', function (e) {
-  //       console.log('wheels');
-  //     });
-  //   };
-
+  //triggers when home button is clicked, calls on getImage function to change background in accordance to the 'active' class
   buttonClicked = (getImage) => {
     const homeButton = document.getElementsByClassName('homeButton');
     homeButton[0].addEventListener('click', function () {
-      // console.log('home button pressed');
       getImage();
     });
   };
 
   componentDidMount() {
-    this.props.rotateEvent();
+    this.props.rotateEvent(); //triggers rotate event when menu wheel is rotated.
     this.buttonClicked(this.props.getImage);
   }
 
   render() {
-    const { getMenu, getImage } = this.props;
+    const { getMenu } = this.props;
 
     return (
       <div style={styles.controllerContainer} className="controllerContainer">
@@ -41,16 +32,19 @@ class IpodController extends React.Component {
           <img
             style={styles.fastForward}
             className="fastForward"
+            alt="fastForward"
             src="https://www.flaticon.com/svg/static/icons/svg/31/31085.svg"
           ></img>
           <img
             style={styles.fastRewind}
             className="fastRewind"
+            alt="rewind"
             src="https://www.flaticon.com/svg/static/icons/svg/64/64488.svg"
           ></img>
           <img
             style={styles.pause}
             className="pause"
+            alt="pause"
             src="https://www.flaticon.com/svg/static/icons/svg/64/64595.svg"
           ></img>
           <div style={styles.homeButton} className="homeButton"></div>
@@ -59,8 +53,9 @@ class IpodController extends React.Component {
     );
   }
 }
-
+// CSS Style for IPOD CONTAINER
 const styles = {
+  //Outer Container
   controllerContainer: {
     height: 200,
     width: 200,
@@ -68,6 +63,7 @@ const styles = {
     boxSizing: 'border-box',
     paddingTop: 25,
   },
+  //Inner Container
   menuController: {
     height: 150,
     width: 150,
@@ -78,6 +74,7 @@ const styles = {
     padding: 35,
     position: 'relative',
   },
+  //Menu Button
   homeButton: {
     height: 75,
     width: 75,
@@ -87,6 +84,7 @@ const styles = {
     position: 'relative',
     top: 1,
   },
+  //Fast Forward Button
   fastForward: {
     height: 20,
     width: 20,
@@ -94,6 +92,7 @@ const styles = {
     right: 7,
     top: 70,
   },
+  //Rewind Button
   fastRewind: {
     height: 20,
     width: 20,
@@ -101,6 +100,7 @@ const styles = {
     left: 7,
     top: 70,
   },
+  //Pause Button
   pause: {
     height: 18,
     width: 18,
@@ -108,6 +108,7 @@ const styles = {
     bottom: 12,
     left: 67,
   },
+  //Menu title
   menu: {
     position: 'absolute',
     top: -9,

@@ -8,17 +8,12 @@ class Ipod extends React.Component {
     super();
 
     this.state = {
-      menu: [
-        // { name: 'Songs', className: '' },
-        // { name: 'Albums', className: '' },
-        // { name: 'Artists', className: '' },
-        // { name: 'Playlists', className: '' },
-      ],
+      menu: [],
       image:
         'https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1078&q=80',
     };
   }
-
+  //Renders the menu options list
   getMenu = () => {
     const { menu } = this.state;
     if (menu.length !== 0) {
@@ -41,6 +36,7 @@ class Ipod extends React.Component {
     }
   };
 
+  //Sets the background image in accordance to the 'active' class
   getImage = () => {
     const { menu } = this.state;
     if (menu.length !== 0) {
@@ -69,6 +65,7 @@ class Ipod extends React.Component {
     }
   };
 
+  //Captures the rotating degree angle and changes the active list in accordance with the angle of rotation
   rotateEvent = () => {
     var touchArea = document.getElementsByClassName('menuController');
     var myRegion = new ZingTouch.Region(touchArea[0]);
@@ -76,6 +73,7 @@ class Ipod extends React.Component {
 
     myRegion.bind(touchArea[0], myTapGesture, (e) => {
       if (
+        //rotation angle between 0 and 90
         e.detail.distanceFromOrigin > 0 &&
         e.detail.distanceFromOrigin <= 90
       ) {
@@ -88,6 +86,7 @@ class Ipod extends React.Component {
           ],
         });
       } else if (
+        //rotation angle between 90 and 180
         e.detail.distanceFromOrigin > 90 &&
         e.detail.distanceFromOrigin <= 180
       ) {
@@ -100,6 +99,7 @@ class Ipod extends React.Component {
           ],
         });
       } else if (
+        //rotation angle between 180 and 270
         e.detail.distanceFromOrigin > 180 &&
         e.detail.distanceFromOrigin <= 270
       ) {
@@ -112,6 +112,7 @@ class Ipod extends React.Component {
           ],
         });
       } else if (
+        //rotation angle between 270 and 360
         e.detail.distanceFromOrigin > 270 &&
         e.detail.distanceFromOrigin <= 360
       ) {
@@ -128,7 +129,6 @@ class Ipod extends React.Component {
   };
   render() {
     const { menu, image } = this.state;
-    // console.log('this.state.image', this.state.image);
 
     return (
       <div className="IpodScreen">
