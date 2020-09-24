@@ -1,5 +1,4 @@
 import React from 'react';
-import ZingTouch from 'zingtouch';
 
 class IpodController extends React.Component {
   //   rotateEvent = () => {
@@ -11,16 +10,32 @@ class IpodController extends React.Component {
   //     });
   //   };
 
+  buttonClicked = (getImage) => {
+    const homeButton = document.getElementsByClassName('homeButton');
+    homeButton[0].addEventListener('click', function () {
+      // console.log('home button pressed');
+      getImage();
+    });
+  };
+
   componentDidMount() {
-    // this.rotateEvent();
     this.props.rotateEvent();
+    this.buttonClicked(this.props.getImage);
   }
 
   render() {
+    const { getMenu, getImage } = this.props;
+
     return (
       <div style={styles.controllerContainer} className="controllerContainer">
         <div style={styles.menuController} className="menuController">
-          <h3 style={styles.menu} className="menu">
+          <h3
+            onClick={() => {
+              getMenu();
+            }}
+            style={styles.menu}
+            className="menu"
+          >
             MENU
           </h3>
           <img
@@ -49,7 +64,7 @@ const styles = {
   controllerContainer: {
     height: 200,
     width: 200,
-    background: 'lightgray',
+    background: '#c0c0c0',
     boxSizing: 'border-box',
     paddingTop: 25,
   },
@@ -67,7 +82,7 @@ const styles = {
     height: 75,
     width: 75,
     margin: 'auto',
-    background: 'lightgray',
+    background: '#c0c0c0',
     borderRadius: 50,
     position: 'relative',
     top: 1,
